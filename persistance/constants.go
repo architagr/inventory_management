@@ -1,4 +1,4 @@
-package queries
+package persistance
 
 const (
 	DynamoDbPersistance = iota

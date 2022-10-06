@@ -7,19 +7,24 @@ import (
 
 type User struct {
 	contracts.CommonPersistance
-	connection interface{}
+	connection model.DbConnection
 }
 
-func UserConstructor(userId int) User {
+func UserConstructor(dbConn model.DbConnection) User {
 	commonPer := contracts.CommonPersistance{}
 	return User{
 		CommonPersistance: commonPer,
-		connection:        commonPer.GetConnection(userId),
+		connection:        dbConn,
 	}
 }
 
 var _ contracts.IUser = new(User)
 
 func (user User) GetUsers() []model.User {
-	return nil
+	return []model.User{
+		{
+			UserId:    "MongoDb UserId",
+			FirstName: "MongoDb FirstName",
+		},
+	}
 }
